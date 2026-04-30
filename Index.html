@@ -1,1 +1,994 @@
+<!DOCTYPE html>
 
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="description" content="NHS Compass — discover where you sit in the NHS ideological landscape across standardisation, innovation and technology.">
+<title>NHS Compass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --nhs-blue:        #005EB8;
+  --nhs-dark-blue:   #003087;
+  --nhs-bright-blue: #0072CE;
+  --nhs-light-blue:  #41B6E6;
+  --nhs-aqua:        #00A9CE;
+  --nhs-green:       #009639;
+  --nhs-yellow:      #FFB81C;
+  --nhs-red:         #DA291C;
+  --nhs-white:       #FFFFFF;
+  --nhs-pale-grey:   #F0F4F5;
+  --nhs-mid-grey:    #768692;
+  --nhs-dark-grey:   #425563;
+  --text:            #212B32;
+  --border:          #d8dde0;
+  --max-w:           640px;
+}
+
+- { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+font-family: ‘Noto Sans’, ‘Helvetica Neue’, Arial, sans-serif;
+background: var(–nhs-pale-grey);
+color: var(–text);
+min-height: 100vh;
+-webkit-font-smoothing: antialiased;
+}
+
+/* ── Header ────────────────────────────────────────── */
+.header {
+background: var(–nhs-blue);
+position: sticky;
+top: 0;
+z-index: 100;
+box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+.header-inner {
+max-width: var(–max-w);
+margin: 0 auto;
+padding: 12px 20px;
+display: flex;
+align-items: center;
+gap: 16px;
+}
+
+.nhs-logo {
+background: white;
+color: var(–nhs-blue);
+font-weight: 700;
+font-size: 22px;
+font-family: ‘Noto Sans’, sans-serif;
+padding: 4px 10px;
+letter-spacing: -0.5px;
+line-height: 1;
+flex-shrink: 0;
+border-radius: 2px;
+}
+
+.header-text h1 {
+color: white;
+font-size: 17px;
+font-weight: 700;
+letter-spacing: 0.01em;
+}
+
+.header-text p {
+color: rgba(255,255,255,0.72);
+font-size: 12px;
+margin-top: 1px;
+}
+
+.progress-track {
+height: 5px;
+background: var(–nhs-dark-blue);
+}
+
+.progress-fill {
+height: 100%;
+background: var(–nhs-yellow);
+transition: width 0.4s ease;
+width: 0%;
+}
+
+/* ── Container ─────────────────────────────────────── */
+.container {
+max-width: var(–max-w);
+margin: 0 auto;
+padding: 0 16px 60px;
+}
+
+/* ── Card ──────────────────────────────────────────── */
+.card {
+background: white;
+border-top: 4px solid var(–nhs-blue);
+border-radius: 0 0 4px 4px;
+padding: 28px 24px;
+margin-top: 24px;
+box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.card-label {
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(–nhs-mid-grey);
+margin-bottom: 10px;
+}
+
+.card h2 {
+font-family: ‘Source Serif 4’, Georgia, serif;
+font-size: 22px;
+font-weight: 600;
+color: var(–text);
+line-height: 1.3;
+margin-bottom: 16px;
+}
+
+.card p {
+font-size: 15px;
+line-height: 1.65;
+color: var(–nhs-dark-grey);
+}
+
+/* ── Landing ───────────────────────────────────────── */
+.landing-hero {
+text-align: center;
+padding: 12px 0 20px;
+}
+
+.landing-hero .compass-icon {
+font-size: 52px;
+margin-bottom: 16px;
+display: block;
+}
+
+.landing-hero h2 {
+font-family: ‘Source Serif 4’, Georgia, serif;
+font-size: 28px;
+color: var(–nhs-blue);
+margin-bottom: 12px;
+}
+
+.landing-hero p {
+font-size: 15px;
+color: var(–nhs-dark-grey);
+line-height: 1.65;
+max-width: 480px;
+margin: 0 auto 24px;
+}
+
+.pill-row {
+display: flex;
+justify-content: center;
+gap: 8px;
+flex-wrap: wrap;
+margin-bottom: 28px;
+}
+
+.pill {
+background: var(–nhs-pale-grey);
+border: 1px solid var(–border);
+border-radius: 20px;
+padding: 5px 14px;
+font-size: 12px;
+color: var(–nhs-dark-grey);
+display: flex;
+align-items: center;
+gap: 5px;
+}
+
+.pill span { color: var(–nhs-green); font-weight: 700; }
+
+.disclaimer {
+background: var(–nhs-pale-grey);
+border-left: 4px solid var(–nhs-light-blue);
+padding: 12px 16px;
+font-size: 13px;
+color: var(–nhs-dark-grey);
+border-radius: 0 4px 4px 0;
+margin-top: 20px;
+text-align: left;
+}
+
+/* ── Buttons ───────────────────────────────────────── */
+.btn {
+display: inline-block;
+padding: 14px 28px;
+border-radius: 4px;
+font-size: 16px;
+font-weight: 700;
+font-family: ‘Noto Sans’, sans-serif;
+cursor: pointer;
+border: none;
+transition: background 0.15s, transform 0.1s;
+text-align: center;
+width: 100%;
+margin-top: 20px;
+letter-spacing: 0.01em;
+}
+
+.btn:active { transform: scale(0.98); }
+
+.btn-primary {
+background: var(–nhs-green);
+color: white;
+box-shadow: 0 2px 0 #00722b;
+}
+
+.btn-primary:hover { background: #008031; }
+
+.btn-primary:disabled {
+background: var(–nhs-mid-grey);
+box-shadow: none;
+cursor: not-allowed;
+transform: none;
+}
+
+.btn-ghost {
+background: white;
+color: var(–nhs-blue);
+border: 2px solid var(–nhs-blue);
+box-shadow: none;
+margin-top: 12px;
+}
+
+.btn-ghost:hover { background: var(–nhs-pale-grey); }
+
+.btn-row {
+display: flex;
+gap: 10px;
+margin-top: 20px;
+}
+
+.btn-row .btn { margin-top: 0; }
+
+/* ── Demographics ──────────────────────────────────── */
+.demo-group { margin-bottom: 22px; }
+
+.demo-group label {
+display: block;
+font-size: 14px;
+font-weight: 700;
+color: var(–text);
+margin-bottom: 10px;
+}
+
+.option-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 8px;
+}
+
+.option-btn {
+padding: 12px 14px;
+border-radius: 4px;
+border: 2px solid var(–border);
+background: white;
+color: var(–text);
+font-size: 14px;
+font-family: ‘Noto Sans’, sans-serif;
+cursor: pointer;
+text-align: left;
+transition: all 0.12s ease;
+line-height: 1.3;
+}
+
+.option-btn:hover { border-color: var(–nhs-blue); }
+
+.option-btn.selected {
+border-color: var(–nhs-blue);
+background: #EBF4FF;
+color: var(–nhs-dark-blue);
+font-weight: 700;
+}
+
+/* ── Questions ─────────────────────────────────────── */
+.q-counter {
+font-size: 13px;
+color: var(–nhs-mid-grey);
+margin-bottom: 18px;
+font-weight: 500;
+}
+
+.q-text {
+font-family: ‘Source Serif 4’, Georgia, serif;
+font-size: 20px;
+line-height: 1.45;
+color: var(–text);
+margin-bottom: 24px;
+}
+
+.likert-col {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.likert-btn {
+padding: 16px 18px;
+border-radius: 4px;
+border: 2px solid var(–border);
+background: white;
+color: var(–text);
+font-size: 15px;
+font-family: ‘Noto Sans’, sans-serif;
+cursor: pointer;
+text-align: left;
+transition: all 0.12s ease;
+display: flex;
+align-items: center;
+gap: 12px;
+}
+
+.likert-btn:hover { border-color: var(–nhs-blue); background: #f7fbff; }
+
+.likert-btn.selected {
+border-color: var(–nhs-blue);
+background: #EBF4FF;
+color: var(–nhs-dark-blue);
+font-weight: 700;
+}
+
+.likert-dot {
+width: 18px;
+height: 18px;
+border-radius: 50%;
+border: 2px solid var(–border);
+flex-shrink: 0;
+transition: all 0.12s;
+}
+
+.likert-btn.selected .likert-dot {
+background: var(–nhs-blue);
+border-color: var(–nhs-blue);
+}
+
+/* ── Results ───────────────────────────────────────── */
+.results-card {
+background: white;
+border-top: 4px solid var(–nhs-yellow);
+border-radius: 0 0 4px 4px;
+padding: 24px;
+margin-top: 24px;
+box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.results-qlabel {
+font-size: 13px;
+font-weight: 700;
+color: var(–nhs-blue);
+letter-spacing: 0.05em;
+text-transform: uppercase;
+margin-bottom: 6px;
+}
+
+.results-headline {
+font-family: ‘Source Serif 4’, Georgia, serif;
+font-size: 22px;
+color: var(–text);
+margin-bottom: 6px;
+line-height: 1.3;
+}
+
+.results-closest {
+font-size: 14px;
+color: var(–nhs-dark-grey);
+margin-bottom: 20px;
+}
+
+.results-closest strong { color: var(–text); }
+
+/* Compass SVG container */
+.compass-wrap {
+width: 100%;
+max-width: 420px;
+margin: 0 auto 20px;
+}
+
+.compass-wrap svg { width: 100%; height: auto; }
+
+/* Score pills */
+.score-row {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 10px;
+margin-bottom: 20px;
+}
+
+.score-pill {
+background: var(–nhs-pale-grey);
+border: 1px solid var(–border);
+border-radius: 4px;
+padding: 12px 14px;
+}
+
+.score-pill-label {
+font-size: 10px;
+font-weight: 700;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(–nhs-mid-grey);
+margin-bottom: 4px;
+}
+
+.score-pill-val {
+font-size: 16px;
+font-weight: 700;
+color: var(–nhs-blue);
+}
+
+/* Archetype list */
+.archetype-card {
+background: white;
+border-top: 4px solid var(–nhs-light-blue);
+border-radius: 0 0 4px 4px;
+padding: 24px;
+margin-top: 16px;
+box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.archetype-card h3 {
+font-family: ‘Source Serif 4’, Georgia, serif;
+font-size: 18px;
+margin-bottom: 6px;
+color: var(–text);
+}
+
+.archetype-card .sub {
+font-size: 12px;
+color: var(–nhs-mid-grey);
+margin-bottom: 16px;
+}
+
+.archetype-row {
+display: flex;
+align-items: center;
+gap: 12px;
+padding: 10px 0;
+border-bottom: 1px solid var(–nhs-pale-grey);
+}
+
+.archetype-row:last-child { border-bottom: none; }
+
+.archetype-dot {
+width: 12px;
+height: 12px;
+border-radius: 50%;
+flex-shrink: 0;
+}
+
+.archetype-name {
+font-size: 14px;
+font-weight: 500;
+flex: 1;
+color: var(–text);
+}
+
+.archetype-coords {
+font-size: 11px;
+color: var(–nhs-mid-grey);
+font-family: monospace;
+}
+
+/* Footer */
+footer {
+text-align: center;
+padding: 32px 16px;
+font-size: 12px;
+color: var(–nhs-mid-grey);
+line-height: 1.7;
+}
+
+footer a { color: var(–nhs-blue); text-decoration: none; }
+
+/* Animations */
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(16px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in { animation: fadeUp 0.35s ease forwards; }
+
+@keyframes dotReveal {
+from { opacity: 0; transform: scale(0); }
+to   { opacity: 1; transform: scale(1); }
+}
+
+.user-dot { animation: dotReveal 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.5s both; }
+
+/* ── Legend ────────────────────────────────────────── */
+.legend-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 8px;
+margin: 12px 0 16px;
+padding: 14px;
+background: var(–nhs-pale-grey);
+border-radius: 4px;
+border: 1px solid var(–border);
+}
+
+.legend-item {
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.legend-dot {
+width: 10px;
+height: 10px;
+border-radius: 50%;
+flex-shrink: 0;
+}
+
+.legend-label {
+font-size: 12px;
+color: var(–nhs-dark-grey);
+line-height: 1.3;
+}
+/* ── Responsive ────────────────────────────────────── */
+@media (max-width: 420px) {
+.card, .results-card, .archetype-card { padding: 20px 16px; }
+.q-text { font-size: 18px; }
+.option-grid { grid-template-columns: 1fr; }
+.nhs-logo { font-size: 18px; }
+.header-text h1 { font-size: 15px; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- Header -->
+
+<header class="header">
+  <div class="header-inner">
+    <div class="nhs-logo">NHS</div>
+    <div class="header-text">
+      <h1>Compass</h1>
+      <p>Map your position in the NHS landscape · Plot your journey to the NHS's future</p>
+    </div>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progressBar"></div>
+  </div>
+</header>
+
+<!-- Main -->
+
+<main class="container" id="app"></main>
+
+<!-- Footer -->
+
+<footer>
+  <p><strong>NHS Compass Project</strong> &copy; 2025 DCDC Ltd</p>
+  <p>Plot your journey to the NHS's future</p>
+  <p style="margin-top:8px;">Archetype positions are estimated placeholders and will update as data accumulates.</p>
+  <p>This tool does not provide health advice. <a href="mailto:hello@nhscompass.org">hello@nhscompass.org</a></p>
+</footer>
+
+<script>
+// ── Data ──────────────────────────────────────────────────────────────────────
+
+const DEMOGRAPHICS = [
+  {
+    id: 'role',
+    label: 'What is your primary role?',
+    options: ['Clinician','Manager','Both','Other']
+  },
+  {
+    id: 'seniority',
+    label: 'What is your seniority?',
+    options: ['Band 1–4','Band 5–6','Band 7–8','Director','Executive']
+  },
+  {
+    id: 'setting',
+    label: 'What is your primary setting?',
+    options: ['Acute Trust','Mental Health Trust','Community Trust','GP Practice','ICB','NHSE','Independent','Other']
+  },
+  {
+    id: 'region',
+    label: 'Where do you work?',
+    options: ['National','London','South East','South West','East of England','Midlands','North East & Yorkshire','North West','Other']
+  }
+];
+
+// axis S/I = axis1, T/H = axis2
+// reverse: SA pulls away from named pole (I and H questions)
+const QUESTIONS = [
+  { id:1,  axis:'S', rev:false, text:'A national clinical protocol followed consistently across the NHS will produce better outcomes than locally designed approaches.' },
+  { id:2,  axis:'H', rev:true,  text:'No technology can replicate the clinical judgment that comes from being in the room with a patient.' },
+  { id:3,  axis:'I', rev:true,  text:'The best improvements in care I have seen came from someone trying something different locally, not following a national directive.' },
+  { id:4,  axis:'T', rev:false, text:'A clinician who overrides a computer-generated risk score without documenting why is taking an unacceptable risk.' },
+  { id:5,  axis:'I', rev:true,  text:'No national framework can account for the specific needs of the community I work in.' },
+  { id:6,  axis:'T', rev:false, text:'The variation in clinical outcomes across the NHS is evidence that human judgment alone is not sufficient.' },
+  { id:7,  axis:'S', rev:false, text:'When a national programme has failed, it is usually because it was poorly implemented locally, not poorly designed centrally.' },
+  { id:8,  axis:'H', rev:true,  text:'When a digital tool and an experienced clinician disagree, the clinician should have the final word.' },
+  { id:9,  axis:'S', rev:false, text:'The NHS would benefit more from spreading what already works than from funding new pilots.' },
+  { id:10, axis:'T', rev:false, text:'I would trust a computer-generated triage score to assess patients more consistently than a clinician under pressure.' },
+  { id:11, axis:'I', rev:true,  text:'Local teams closest to patients are best placed to decide how care should be delivered.' },
+  { id:12, axis:'H', rev:true,  text:'Accountability for a clinical decision cannot be transferred to a technology system.' },
+  { id:13, axis:'S', rev:false, text:'Standardised pathways give me confidence that patients are receiving safe care.' },
+  { id:14, axis:'T', rev:false, text:'A clinician who continues to see patients that a risk scoring system has flagged for discharge is not exercising judgment — they are creating unsustainable demand.' },
+  { id:15, axis:'I', rev:true,  text:'The NHS has too many national strategies and not enough freedom to act on them locally.' },
+  { id:16, axis:'H', rev:true,  text:'The instincts developed through years of clinical practice are beyond what any technology can replicate.' },
+  { id:17, axis:'T', rev:false, text:'The NHS\'s biggest quality problem is unwarranted clinical variation, and technology is the most scalable solution to it.' },
+  { id:18, axis:'H', rev:true,  text:'The most important things a clinician knows about a patient are never recorded in any system.' }
+];
+
+const LIKERT = [
+  { label:'Strongly Agree',    val: 2 },
+  { label:'Agree',             val: 1 },
+  { label:'Disagree',          val:-1 },
+  { label:'Strongly Disagree', val:-2 }
+];
+
+// x = Axis1: -10 (Innovation) to +10 (Standardisation)
+// y = Axis2: -10 (Human) to +10 (Technology)
+const ARCHETYPES = [
+  { id:'grandee',     label:'The Grandee',     x: 10, y: -7, color:'#7B2D8B' },
+  { id:'mandarin',    label:'The Mandarin',    x: 10, y:  8, color:'#003087' },
+  { id:'transformer', label:'The Transformer', x:  0, y:  8, color:'#0072CE' },
+  { id:'frontline',   label:'The Frontline',   x: -8, y: -9, color:'#009639' },
+  { id:'exec',        label:'The Exec',        x:  6, y:  0, color:'#768692' },
+  { id:'pioneer',     label:'The Pioneer',     x: -7, y:  3, color:'#DA291C' },
+  { id:'evangelist',  label:'The Evangelist',  x: -4, y:  6, color:'#FFB81C' }
+];
+
+// ── State ─────────────────────────────────────────────────────────────────────
+let state = {
+  screen: 'landing',   // landing | demo | questions | results
+  demographics: {},
+  answers: {},
+  qIndex: 0,
+  scores: null
+};
+
+// ── Scoring ───────────────────────────────────────────────────────────────────
+function score(answers) {
+  let s1 = 0, s2 = 0;
+  let c1 = 0, c2 = 0;
+  QUESTIONS.forEach(q => {
+    const raw = answers[q.id];
+    if (raw === undefined) return;
+    const val = q.rev ? -raw : raw;
+    if (q.axis === 'S') { s1 += val; c1++; }
+    else if (q.axis === 'I') { s1 -= val; c1++; }
+    else if (q.axis === 'T') { s2 += val; c2++; }
+    else { s2 -= val; c2++; }
+  });
+  const x = Math.round(Math.max(-10, Math.min(10, c1 ? (s1 / (c1 * 2)) * 10 : 0)));
+  const y = Math.round(Math.max(-10, Math.min(10, c2 ? (s2 / (c2 * 2)) * 10 : 0)));
+  return { x, y };
+}
+
+function quadrantLabel(x, y) {
+  const h = x >= 0 ? 'Standardisation' : 'Local Innovation';
+  const v = y >= 0 ? 'Technology Supersedes' : 'Human Judgment Supreme';
+  return `${v} · ${h}`;
+}
+
+function closestArchetype(x, y) {
+  let best = null, bestD = Infinity;
+  ARCHETYPES.forEach(a => {
+    const d = Math.sqrt((a.x - x) ** 2 + (a.y - y) ** 2);
+    if (d < bestD) { bestD = d; best = a; }
+  });
+  return best;
+}
+
+// ── Compass SVG ───────────────────────────────────────────────────────────────
+function buildCompass(userPos) {
+  const SIZE = 400;
+  const PAD  = 52;
+  const INNER = SIZE - PAD * 2;
+  const mid = SIZE / 2;
+
+  function toSVG(val) {
+    return PAD + ((val + 10) / 20) * INNER;
+  }
+
+  let gridLines = '';
+  [-8,-6,-4,-2,0,2,4,6,8].forEach(v => {
+    const px = toSVG(v);
+    const isZero = v === 0;
+    gridLines += `
+      <line x1="${px}" y1="${PAD}" x2="${px}" y2="${SIZE-PAD}"
+        stroke="${isZero ? '#005EB855' : '#d8dde055'}" stroke-width="${isZero ? 1.5 : 0.75}"/>
+      <line x1="${PAD}" y1="${px}" x2="${SIZE-PAD}" y2="${px}"
+        stroke="${isZero ? '#005EB855' : '#d8dde055'}" stroke-width="${isZero ? 1.5 : 0.75}"/>
+    `;
+  });
+
+  let archetypeNodes = '';
+  ARCHETYPES.forEach(a => {
+    const ax = toSVG(a.x);
+    const ay = toSVG(a.y);
+    archetypeNodes += `
+      <g class="archetype-node">
+        <circle cx="${ax}" cy="${ay}" r="18" fill="${a.color}" opacity="0.12"/>
+        <circle cx="${ax}" cy="${ay}" r="7" fill="${a.color}" opacity="0.95"/>
+        <circle cx="${ax}" cy="${ay}" r="3.5" fill="white"/>
+      </g>
+    `;
+  });
+
+  let userDot = '';
+  if (userPos) {
+    const ux = toSVG(userPos.x);
+    const uy = toSVG(userPos.y);
+    userDot = `
+      <g class="user-dot">
+        <circle cx="${ux}" cy="${uy}" r="22" fill="#FFB81C" opacity="0.2"/>
+        <circle cx="${ux}" cy="${uy}" r="10" fill="#FFB81C"/>
+        <circle cx="${ux}" cy="${uy}" r="5" fill="white"/>
+        <text x="${ux}" y="${uy - 16}" fill="#FFB81C" font-size="10"
+          text-anchor="middle" font-family="Noto Sans, sans-serif" font-weight="700">YOU</text>
+      </g>
+    `;
+  }
+
+  return `
+    <svg viewBox="0 0 ${SIZE} ${SIZE}" xmlns="http://www.w3.org/2000/svg"
+      style="width:100%;height:auto;display:block;">
+      <defs>
+        <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#EBF4FF"/>
+          <stop offset="100%" stop-color="#F0F4F5"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Background -->
+      <rect width="${SIZE}" height="${SIZE}" fill="url(#bgGrad)" rx="4"/>
+
+      <!-- Quadrant tints -->
+      <rect x="${PAD}" y="${PAD}" width="${INNER/2}" height="${INNER/2}" fill="#00963908"/>
+      <rect x="${mid}" y="${PAD}" width="${INNER/2}" height="${INNER/2}" fill="#005EB808"/>
+      <rect x="${PAD}" y="${mid}" width="${INNER/2}" height="${INNER/2}" fill="#7B2D8B08"/>
+      <rect x="${mid}" y="${mid}" width="${INNER/2}" height="${INNER/2}" fill="#0072CE08"/>
+
+      <!-- Grid -->
+      ${gridLines}
+
+      <!-- Axis border -->
+      <rect x="${PAD}" y="${PAD}" width="${INNER}" height="${INNER}"
+        fill="none" stroke="#005EB830" stroke-width="1" rx="2"/>
+
+      <!-- Axis labels -->
+      <text x="${mid}" y="${PAD - 10}" fill="#005EB8" font-size="9.5"
+        text-anchor="middle" font-family="Noto Sans,sans-serif" font-weight="700"
+        letter-spacing="0.08em">LOCAL INNOVATION</text>
+
+      <text x="${mid}" y="${SIZE - PAD + 20}" fill="#005EB8" font-size="9.5"
+        text-anchor="middle" font-family="Noto Sans,sans-serif" font-weight="700"
+        letter-spacing="0.08em">STANDARDISATION</text>
+
+      <text x="${PAD - 10}" y="${mid}" fill="#005EB8" font-size="9.5"
+        text-anchor="middle" font-family="Noto Sans,sans-serif" font-weight="700"
+        letter-spacing="0.08em"
+        transform="rotate(-90 ${PAD - 10} ${mid})">HUMAN JUDGMENT</text>
+
+      <text x="${SIZE - PAD + 10}" y="${mid}" fill="#005EB8" font-size="9.5"
+        text-anchor="middle" font-family="Noto Sans,sans-serif" font-weight="700"
+        letter-spacing="0.08em"
+        transform="rotate(90 ${SIZE - PAD + 10} ${mid})">TECHNOLOGY</text>
+
+      <!-- Archetypes -->
+      ${archetypeNodes}
+
+      <!-- User -->
+      ${userDot}
+    </svg>
+  `;
+}
+
+// ── Render ────────────────────────────────────────────────────────────────────
+function render() {
+  const app = document.getElementById('app');
+  const bar = document.getElementById('progressBar');
+
+  // Progress
+  if (state.screen === 'questions') {
+    bar.style.width = ((state.qIndex / QUESTIONS.length) * 100) + '%';
+  } else if (state.screen === 'results') {
+    bar.style.width = '100%';
+  } else {
+    bar.style.width = '0%';
+  }
+
+  if (state.screen === 'landing') {
+    app.innerHTML = `
+      <div class="card animate-in">
+        <div class="landing-hero">
+          <span class="compass-icon">🧭</span>
+          <h2>NHS Compass</h2>
+          <p>Where do you sit in the NHS ideological landscape? Answer 18 questions to find out — and see how you compare to the key tribes shaping the health system.</p>
+          <div class="pill-row">
+            <div class="pill"><span>✓</span> ~5 minutes</div>
+            <div class="pill"><span>✓</span> 18 questions</div>
+            <div class="pill"><span>✓</span> Anonymous</div>
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="go('demo')">Begin the Compass</button>
+        <div class="disclaimer">
+          Archetype positions are estimated placeholders based on our reading of each tribe's publicly stated positions. They will update as real data accumulates.
+        </div>
+      </div>
+    `;
+  }
+
+  else if (state.screen === 'demo') {
+    const allDone = DEMOGRAPHICS.every(d => state.demographics[d.id]);
+
+    let demoHTML = DEMOGRAPHICS.map(d => {
+      const opts = d.options.map(o => {
+        const sel = state.demographics[d.id] === o ? 'selected' : '';
+        return `<button class="option-btn ${sel}" onclick="selectDemo('${d.id}','${o}')">${o}</button>`;
+      }).join('');
+      return `
+        <div class="demo-group">
+          <label>${d.label}</label>
+          <div class="option-grid">${opts}</div>
+        </div>
+      `;
+    }).join('');
+
+    app.innerHTML = `
+      <div class="card animate-in">
+        <div class="card-label">Step 1 of 2 — About You</div>
+        <h2>A few quick details before we begin</h2>
+        ${demoHTML}
+        <button class="btn btn-primary" ${allDone ? '' : 'disabled'}
+          onclick="go('questions')">Continue to Questions →</button>
+      </div>
+    `;
+  }
+
+  else if (state.screen === 'questions') {
+    const q = QUESTIONS[state.qIndex];
+    const answered = state.answers[q.id];
+
+    const likertHTML = LIKERT.map(l => {
+      const sel = state.answers[q.id] === l.val ? 'selected' : '';
+      return `
+        <button class="likert-btn ${sel}" onclick="answer(${l.val})">
+          <div class="likert-dot"></div>
+          ${l.label}
+        </button>
+      `;
+    }).join('');
+
+    const isLast = state.qIndex === QUESTIONS.length - 1;
+
+    app.innerHTML = `
+      <div class="card animate-in">
+        <div class="card-label">Step 2 of 2 — The Questions</div>
+        <div class="q-counter">Question ${state.qIndex + 1} of ${QUESTIONS.length}</div>
+        <p class="q-text">${q.text}</p>
+        <div class="likert-col">${likertHTML}</div>
+        <button class="btn btn-primary"
+            ${answered !== undefined ? '' : 'disabled'}
+            onclick="nextQ()">${isLast ? 'See My Results' : 'Next →'}</button>
+          <button class="btn btn-ghost" onclick="goBack()">← Back</button>
+      </div>
+    `;
+  }
+
+  else if (state.screen === 'results') {
+    const sc = state.scores;
+    const ql = quadrantLabel(sc.x, sc.y);
+    const closest = closestArchetype(sc.x, sc.y);
+
+    const ax1label = sc.x >= 0
+      ? `Standardisation +${sc.x}`
+      : `Local Innovation ${Math.abs(sc.x)}`;
+    const ax2label = sc.y >= 0
+      ? `Technology Supersedes +${sc.y}`
+      : `Human Judgment ${Math.abs(sc.y)}`;
+
+    const archetypeRows = ARCHETYPES.map(a => `
+      <div class="archetype-row">
+        <div class="archetype-dot" style="background:${a.color}"></div>
+        <div class="archetype-name">${a.label}</div>
+        <div class="archetype-coords">(${a.x > 0 ? '+' : ''}${a.x}, ${a.y > 0 ? '+' : ''}${a.y})</div>
+      </div>
+    `).join('');
+
+    app.innerHTML = `
+      <div class="results-card animate-in">
+        <div class="results-qlabel">Your Position</div>
+        <div class="results-headline">${ql}</div>
+        <div class="results-closest">Closest archetype: <strong style="color:${closest.color}">${closest.label}</strong></div>
+        <div class="compass-wrap">${buildCompass(sc)}</div>
+        <div class="legend-grid">${ARCHETYPES.map(a => `
+          <div class="legend-item">
+            <div class="legend-dot" style="background:${a.color}"></div>
+            <div class="legend-label">${a.label}</div>
+          </div>`).join('')}
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#FFB81C;border:2px solid #FFB81C;"></div>
+            <div class="legend-label" style="font-weight:700;">You</div>
+          </div>
+        </div>
+        <div class="score-row">
+          <div class="score-pill">
+            <div class="score-pill-label">Axis 1</div>
+            <div class="score-pill-val">${ax1label}</div>
+          </div>
+          <div class="score-pill">
+            <div class="score-pill-label">Axis 2</div>
+            <div class="score-pill-val">${ax2label}</div>
+          </div>
+        </div>
+        <button class="btn btn-ghost" onclick="restart()">Take it again</button>
+      </div>
+
+      <div class="archetype-card animate-in">
+        <h3>The NHS Tribes</h3>
+        <p class="sub">Estimated positions — these will shift as real data accumulates.</p>
+        ${archetypeRows}
+      </div>
+    `;
+  }
+}
+
+// ── Actions ───────────────────────────────────────────────────────────────────
+function go(screen) {
+  if (screen === 'questions') {
+    state.qIndex = 0;
+  }
+  state.screen = screen;
+  render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function selectDemo(id, val) {
+  state.demographics[id] = val;
+  render();
+}
+
+function answer(val) {
+  const q = QUESTIONS[state.qIndex];
+  state.answers[q.id] = val;
+  render();
+}
+
+function nextQ() {
+  if (state.qIndex < QUESTIONS.length - 1) {
+    state.qIndex++;
+    render();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    state.scores = score(state.answers);
+    state.screen = 'results';
+    render();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+function goBack() {
+  if (state.qIndex === 0) {
+    state.screen = 'demo';
+  } else {
+    state.qIndex--;
+  }
+  render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function restart() {
+  state = { screen: 'landing', demographics: {}, answers: {}, qIndex: 0, scores: null };
+  render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+render();
+</script>
+
+</body>
+</html>
