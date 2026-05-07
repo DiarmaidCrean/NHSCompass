@@ -508,6 +508,16 @@ footer a { color: var(--nhs-blue); text-decoration: none; }
   line-height: 1.3;
 }
 
+/* ── Email box ─────────────────────────────────────────── */
+.email-box {
+  background: var(--nhs-pale-grey);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+.email-box input:focus { outline: none; border-color: var(--nhs-blue); }
+
 @media (max-width: 420px) {
   .card, .results-card, .archetype-card { padding: 20px 16px; }
   .q-text { font-size: 18px; }
@@ -885,7 +895,18 @@ function render() {
           </div>
         </div>
         ${shareSection}
-        ${!isShared ? `<button class="btn btn-ghost" onclick="restart()">Take it again</button>` : ''}
+        ${!isShared ? `
+        <div class="email-box" id="emailBox">
+          <div style="font-size:12px;font-weight:700;color:var(--nhs-mid-grey);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">Email my results</div>
+          <div style="display:flex;gap:8px;">
+            <input type="email" id="emailInput" placeholder="your@email.com"
+              style="flex:1;font-size:14px;padding:10px 12px;border:2px solid var(--border);border-radius:4px;font-family:inherit;"
+              onkeydown="if(event.key==='Enter') sendEmail()"/>
+            <button id="emailBtn" class="btn btn-primary" style="margin:0;padding:10px 16px;font-size:14px;white-space:nowrap;" onclick="sendEmail()">Send</button>
+          </div>
+          <p id="emailMsg" style="font-size:13px;margin-top:8px;display:none;"></p>
+        </div>
+        <button class="btn btn-ghost" onclick="restart()">Take it again</button>` : ''}
       </div>
 
       <div class="archetype-card animate-in">
@@ -1003,6 +1024,47 @@ async function loadSharedResult(id) {
   }
   render();
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+async function sendEmail() {
+  const input = document.getElementById('emailInput');
+  const btn   = document.getElementById('emailBtn');
+  const msg   = document.getElementById('emailMsg');
+  const email = input ? input.value.trim() : '';
+  if (!email || !email.includes('@')) {
+    msg.style.display = 'block';
+    msg.style.color   = 'var(--nhs-red)';
+    msg.textContent   = 'Please enter a valid email address.';
+    return;
+  }
+  if (!state.resultId) {
+    msg.style.display = 'block';
+    msg.style.color   = 'var(--nhs-red)';
+    msg.textContent   = 'Result not saved yet — please wait a moment and try again.';
+    return;
+  }
+  btn.disabled    = true;
+  btn.textContent = 'Sending…';
+  msg.style.display = 'none';
+  try {
+    const res = await fetch(`${API_URL}/api/results/${state.resultId}/email`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+    if (!res.ok) throw new Error();
+    msg.style.display = 'block';
+    msg.style.color   = 'var(--nhs-green)';
+    msg.textContent   = `✓ Results sent to ${email}`;
+    input.disabled    = true;
+    btn.textContent   = 'Sent';
+  } catch (e) {
+    msg.style.display = 'block';
+    msg.style.color   = 'var(--nhs-red)';
+    msg.textContent   = 'Could not send email — please try copying the link instead.';
+    btn.disabled      = false;
+    btn.textContent   = 'Send';
+  }
 }
 
 function copyLink() {

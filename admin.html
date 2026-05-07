@@ -166,7 +166,7 @@ function renderDashboard() {
         <h2>All Results</h2>
         <p class="sub">${total} responses — most recent first. Click a link to preview.</p>
         <table>
-          <thead><tr><th>Date</th><th>Role</th><th>Seniority</th><th>Setting</th><th>Region</th><th>Axis 1</th><th>Axis 2</th><th>Link</th></tr></thead>
+          <thead><tr><th>Date</th><th>Email</th><th>Role</th><th>Seniority</th><th>Setting</th><th>Region</th><th>Axis 1</th><th>Axis 2</th><th>Link</th></tr></thead>
           <tbody>
             ${allResults.map(r => {
               const d = r.demographics || {};
@@ -175,8 +175,10 @@ function renderDashboard() {
               const ax2 = s.y >= 0 ? `+${s.y} Tech` : `${s.y} Human`;
               const date = new Date(r.created_at).toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
               const link = `${window.location.origin}/NHSCompass/?r=${r.id}`;
+              const email = r.email || '—';
               return `<tr>
                 <td>${date}</td>
+                <td style="font-size:12px;">${email !== '—' ? `<a href="mailto:${email}" style="color:var(--nhs-blue);">${email}</a>` : '—'}</td>
                 <td>${d.role || '—'}</td>
                 <td>${d.seniority || '—'}</td>
                 <td>${d.setting || '—'}</td>
