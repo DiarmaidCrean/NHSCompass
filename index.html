@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -26,515 +27,530 @@
   --max-w:           640px;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+- { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: 'Noto Sans', 'Helvetica Neue', Arial, sans-serif;
-  background: var(--nhs-pale-grey);
-  color: var(--text);
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
+font-family: ‘Noto Sans’, ‘Helvetica Neue’, Arial, sans-serif;
+background: var(–nhs-pale-grey);
+color: var(–text);
+min-height: 100vh;
+-webkit-font-smoothing: antialiased;
 }
 
+/* ── Header ────────────────────────────────────────── */
 .header {
-  background: var(--nhs-blue);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+background: var(–nhs-blue);
+position: sticky;
+top: 0;
+z-index: 100;
+box-shadow: 0 2px 8px rgba(0,0,0,0.25);
 }
 
 .header-inner {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 12px 20px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
+max-width: var(–max-w);
+margin: 0 auto;
+padding: 12px 20px;
+display: flex;
+align-items: center;
+gap: 16px;
 }
 
 .nhs-logo {
-  background: white;
-  color: var(--nhs-blue);
-  font-weight: 700;
-  font-size: 22px;
-  font-family: 'Noto Sans', sans-serif;
-  padding: 4px 10px;
-  letter-spacing: -0.5px;
-  line-height: 1;
-  flex-shrink: 0;
-  border-radius: 2px;
+background: white;
+color: var(–nhs-blue);
+font-weight: 700;
+font-size: 22px;
+font-family: ‘Noto Sans’, sans-serif;
+padding: 4px 10px;
+letter-spacing: -0.5px;
+line-height: 1;
+flex-shrink: 0;
+border-radius: 2px;
 }
 
 .header-text h1 {
-  color: white;
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: 0.01em;
+color: white;
+font-size: 17px;
+font-weight: 700;
+letter-spacing: 0.01em;
 }
 
 .header-text p {
-  color: rgba(255,255,255,0.72);
-  font-size: 12px;
-  margin-top: 1px;
+color: rgba(255,255,255,0.72);
+font-size: 12px;
+margin-top: 1px;
 }
 
 .progress-track {
-  height: 5px;
-  background: var(--nhs-dark-blue);
+height: 5px;
+background: var(–nhs-dark-blue);
 }
 
 .progress-fill {
-  height: 100%;
-  background: var(--nhs-yellow);
-  transition: width 0.4s ease;
-  width: 0%;
+height: 100%;
+background: var(–nhs-yellow);
+transition: width 0.4s ease;
+width: 0%;
 }
 
+/* ── Container ─────────────────────────────────────── */
 .container {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 0 16px 60px;
+max-width: var(–max-w);
+margin: 0 auto;
+padding: 0 16px 60px;
 }
 
+/* ── Card ──────────────────────────────────────────── */
 .card {
-  background: white;
-  border-top: 4px solid var(--nhs-blue);
-  border-radius: 0 0 4px 4px;
-  padding: 28px 24px;
-  margin-top: 24px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+background: white;
+border-top: 4px solid var(–nhs-blue);
+border-radius: 0 0 4px 4px;
+padding: 28px 24px;
+margin-top: 24px;
+box-shadow: 0 2px 8px rgba(0,0,0,0.07);
 }
 
 .card-label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--nhs-mid-grey);
-  margin-bottom: 10px;
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(–nhs-mid-grey);
+margin-bottom: 10px;
 }
 
 .card h2 {
-  font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 22px;
-  font-weight: 600;
-  color: var(--text);
-  line-height: 1.3;
-  margin-bottom: 16px;
+font-family: ‘Source Serif 4’, Georgia, serif;
+font-size: 22px;
+font-weight: 600;
+color: var(–text);
+line-height: 1.3;
+margin-bottom: 16px;
 }
 
 .card p {
-  font-size: 15px;
-  line-height: 1.65;
-  color: var(--nhs-dark-grey);
+font-size: 15px;
+line-height: 1.65;
+color: var(–nhs-dark-grey);
 }
 
+/* ── Landing ───────────────────────────────────────── */
 .landing-hero {
-  text-align: center;
-  padding: 12px 0 20px;
+text-align: center;
+padding: 12px 0 20px;
 }
 
 .landing-hero .compass-icon {
-  font-size: 52px;
-  margin-bottom: 16px;
-  display: block;
+font-size: 52px;
+margin-bottom: 16px;
+display: block;
 }
 
 .landing-hero h2 {
-  font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 28px;
-  color: var(--nhs-blue);
-  margin-bottom: 12px;
+font-family: ‘Source Serif 4’, Georgia, serif;
+font-size: 28px;
+color: var(–nhs-blue);
+margin-bottom: 12px;
 }
 
 .landing-hero p {
-  font-size: 15px;
-  color: var(--nhs-dark-grey);
-  line-height: 1.65;
-  max-width: 480px;
-  margin: 0 auto 24px;
+font-size: 15px;
+color: var(–nhs-dark-grey);
+line-height: 1.65;
+max-width: 480px;
+margin: 0 auto 24px;
 }
 
 .pill-row {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 28px;
+display: flex;
+justify-content: center;
+gap: 8px;
+flex-wrap: wrap;
+margin-bottom: 28px;
 }
 
 .pill {
-  background: var(--nhs-pale-grey);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 5px 14px;
-  font-size: 12px;
-  color: var(--nhs-dark-grey);
-  display: flex;
-  align-items: center;
-  gap: 5px;
+background: var(–nhs-pale-grey);
+border: 1px solid var(–border);
+border-radius: 20px;
+padding: 5px 14px;
+font-size: 12px;
+color: var(–nhs-dark-grey);
+display: flex;
+align-items: center;
+gap: 5px;
 }
 
-.pill span { color: var(--nhs-green); font-weight: 700; }
+.pill span { color: var(–nhs-green); font-weight: 700; }
 
 .disclaimer {
-  background: var(--nhs-pale-grey);
-  border-left: 4px solid var(--nhs-light-blue);
-  padding: 12px 16px;
-  font-size: 13px;
-  color: var(--nhs-dark-grey);
-  border-radius: 0 4px 4px 0;
-  margin-top: 20px;
-  text-align: left;
+background: var(–nhs-pale-grey);
+border-left: 4px solid var(–nhs-light-blue);
+padding: 12px 16px;
+font-size: 13px;
+color: var(–nhs-dark-grey);
+border-radius: 0 4px 4px 0;
+margin-top: 20px;
+text-align: left;
 }
 
+/* ── Buttons ───────────────────────────────────────── */
 .btn {
-  display: inline-block;
-  padding: 14px 28px;
-  border-radius: 4px;
-  font-size: 16px;
-  font-weight: 700;
-  font-family: 'Noto Sans', sans-serif;
-  cursor: pointer;
-  border: none;
-  transition: background 0.15s, transform 0.1s;
-  text-align: center;
-  width: 100%;
-  margin-top: 20px;
-  letter-spacing: 0.01em;
+display: inline-block;
+padding: 14px 28px;
+border-radius: 4px;
+font-size: 16px;
+font-weight: 700;
+font-family: ‘Noto Sans’, sans-serif;
+cursor: pointer;
+border: none;
+transition: background 0.15s, transform 0.1s;
+text-align: center;
+width: 100%;
+margin-top: 20px;
+letter-spacing: 0.01em;
 }
 
 .btn:active { transform: scale(0.98); }
 
 .btn-primary {
-  background: var(--nhs-green);
-  color: white;
-  box-shadow: 0 2px 0 #00722b;
+background: var(–nhs-green);
+color: white;
+box-shadow: 0 2px 0 #00722b;
 }
 
 .btn-primary:hover { background: #008031; }
 
 .btn-primary:disabled {
-  background: var(--nhs-mid-grey);
-  box-shadow: none;
-  cursor: not-allowed;
-  transform: none;
+background: var(–nhs-mid-grey);
+box-shadow: none;
+cursor: not-allowed;
+transform: none;
 }
 
 .btn-ghost {
-  background: white;
-  color: var(--nhs-blue);
-  border: 2px solid var(--nhs-blue);
-  box-shadow: none;
-  margin-top: 12px;
+background: white;
+color: var(–nhs-blue);
+border: 2px solid var(–nhs-blue);
+box-shadow: none;
+margin-top: 12px;
 }
 
-.btn-ghost:hover { background: var(--nhs-pale-grey); }
+.btn-ghost:hover { background: var(–nhs-pale-grey); }
 
+.btn-row {
+display: flex;
+gap: 10px;
+margin-top: 20px;
+}
+
+.btn-row .btn { margin-top: 0; }
+
+/* ── Demographics ──────────────────────────────────── */
 .demo-group { margin-bottom: 22px; }
 
 .demo-group label {
-  display: block;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 10px;
+display: block;
+font-size: 14px;
+font-weight: 700;
+color: var(–text);
+margin-bottom: 10px;
 }
 
 .option-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 8px;
 }
 
 .option-btn {
-  padding: 12px 14px;
-  border-radius: 4px;
-  border: 2px solid var(--border);
-  background: white;
-  color: var(--text);
-  font-size: 14px;
-  font-family: 'Noto Sans', sans-serif;
-  cursor: pointer;
-  text-align: left;
-  transition: all 0.12s ease;
-  line-height: 1.3;
+padding: 12px 14px;
+border-radius: 4px;
+border: 2px solid var(–border);
+background: white;
+color: var(–text);
+font-size: 14px;
+font-family: ‘Noto Sans’, sans-serif;
+cursor: pointer;
+text-align: left;
+transition: all 0.12s ease;
+line-height: 1.3;
 }
 
-.option-btn:hover { border-color: var(--nhs-blue); }
+.option-btn:hover { border-color: var(–nhs-blue); }
 
 .option-btn.selected {
-  border-color: var(--nhs-blue);
-  background: #EBF4FF;
-  color: var(--nhs-dark-blue);
-  font-weight: 700;
+border-color: var(–nhs-blue);
+background: #EBF4FF;
+color: var(–nhs-dark-blue);
+font-weight: 700;
 }
 
+/* ── Questions ─────────────────────────────────────── */
 .q-counter {
-  font-size: 13px;
-  color: var(--nhs-mid-grey);
-  margin-bottom: 18px;
-  font-weight: 500;
+font-size: 13px;
+color: var(–nhs-mid-grey);
+margin-bottom: 18px;
+font-weight: 500;
 }
 
 .q-text {
-  font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 20px;
-  line-height: 1.45;
-  color: var(--text);
-  margin-bottom: 24px;
+font-family: ‘Source Serif 4’, Georgia, serif;
+font-size: 20px;
+line-height: 1.45;
+color: var(–text);
+margin-bottom: 24px;
 }
 
 .likert-col {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+display: flex;
+flex-direction: column;
+gap: 10px;
 }
 
 .likert-btn {
-  padding: 16px 18px;
-  border-radius: 4px;
-  border: 2px solid var(--border);
-  background: white;
-  color: var(--text);
-  font-size: 15px;
-  font-family: 'Noto Sans', sans-serif;
-  cursor: pointer;
-  text-align: left;
-  transition: all 0.12s ease;
-  display: flex;
-  align-items: center;
-  gap: 12px;
+padding: 16px 18px;
+border-radius: 4px;
+border: 2px solid var(–border);
+background: white;
+color: var(–text);
+font-size: 15px;
+font-family: ‘Noto Sans’, sans-serif;
+cursor: pointer;
+text-align: left;
+transition: all 0.12s ease;
+display: flex;
+align-items: center;
+gap: 12px;
 }
 
-.likert-btn:hover { border-color: var(--nhs-blue); background: #f7fbff; }
+.likert-btn:hover { border-color: var(–nhs-blue); background: #f7fbff; }
 
 .likert-btn.selected {
-  border-color: var(--nhs-blue);
-  background: #EBF4FF;
-  color: var(--nhs-dark-blue);
-  font-weight: 700;
+border-color: var(–nhs-blue);
+background: #EBF4FF;
+color: var(–nhs-dark-blue);
+font-weight: 700;
 }
 
 .likert-dot {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  border: 2px solid var(--border);
-  flex-shrink: 0;
-  transition: all 0.12s;
+width: 18px;
+height: 18px;
+border-radius: 50%;
+border: 2px solid var(–border);
+flex-shrink: 0;
+transition: all 0.12s;
 }
 
 .likert-btn.selected .likert-dot {
-  background: var(--nhs-blue);
-  border-color: var(--nhs-blue);
+background: var(–nhs-blue);
+border-color: var(–nhs-blue);
 }
 
+/* ── Results ───────────────────────────────────────── */
 .results-card {
-  background: white;
-  border-top: 4px solid var(--nhs-yellow);
-  border-radius: 0 0 4px 4px;
-  padding: 24px;
-  margin-top: 24px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+background: white;
+border-top: 4px solid var(–nhs-yellow);
+border-radius: 0 0 4px 4px;
+padding: 24px;
+margin-top: 24px;
+box-shadow: 0 2px 8px rgba(0,0,0,0.07);
 }
 
 .results-qlabel {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--nhs-blue);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  margin-bottom: 6px;
+font-size: 13px;
+font-weight: 700;
+color: var(–nhs-blue);
+letter-spacing: 0.05em;
+text-transform: uppercase;
+margin-bottom: 6px;
 }
 
 .results-headline {
-  font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 22px;
-  color: var(--text);
-  margin-bottom: 6px;
-  line-height: 1.3;
+font-family: ‘Source Serif 4’, Georgia, serif;
+font-size: 22px;
+color: var(–text);
+margin-bottom: 6px;
+line-height: 1.3;
 }
 
 .results-closest {
-  font-size: 14px;
-  color: var(--nhs-dark-grey);
-  margin-bottom: 20px;
+font-size: 14px;
+color: var(–nhs-dark-grey);
+margin-bottom: 20px;
 }
 
-.results-closest strong { color: var(--text); }
+.results-closest strong { color: var(–text); }
 
+/* Compass SVG container */
 .compass-wrap {
-  width: 100%;
-  max-width: 420px;
-  margin: 0 auto 20px;
+width: 100%;
+max-width: 420px;
+margin: 0 auto 20px;
 }
 
 .compass-wrap svg { width: 100%; height: auto; }
 
+/* Score pills */
 .score-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 20px;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 10px;
+margin-bottom: 20px;
 }
 
 .score-pill {
-  background: var(--nhs-pale-grey);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 12px 14px;
+background: var(–nhs-pale-grey);
+border: 1px solid var(–border);
+border-radius: 4px;
+padding: 12px 14px;
 }
 
 .score-pill-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--nhs-mid-grey);
-  margin-bottom: 4px;
+font-size: 10px;
+font-weight: 700;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(–nhs-mid-grey);
+margin-bottom: 4px;
 }
 
 .score-pill-val {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--nhs-blue);
+font-size: 16px;
+font-weight: 700;
+color: var(–nhs-blue);
 }
 
+/* Archetype list */
 .archetype-card {
-  background: white;
-  border-top: 4px solid var(--nhs-light-blue);
-  border-radius: 0 0 4px 4px;
-  padding: 24px;
-  margin-top: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+background: white;
+border-top: 4px solid var(–nhs-light-blue);
+border-radius: 0 0 4px 4px;
+padding: 24px;
+margin-top: 16px;
+box-shadow: 0 2px 8px rgba(0,0,0,0.07);
 }
 
 .archetype-card h3 {
-  font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 18px;
-  margin-bottom: 6px;
-  color: var(--text);
+font-family: ‘Source Serif 4’, Georgia, serif;
+font-size: 18px;
+margin-bottom: 6px;
+color: var(–text);
 }
 
 .archetype-card .sub {
-  font-size: 12px;
-  color: var(--nhs-mid-grey);
-  margin-bottom: 16px;
+font-size: 12px;
+color: var(–nhs-mid-grey);
+margin-bottom: 16px;
 }
 
 .archetype-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--nhs-pale-grey);
+display: flex;
+align-items: center;
+gap: 12px;
+padding: 10px 0;
+border-bottom: 1px solid var(–nhs-pale-grey);
 }
 
 .archetype-row:last-child { border-bottom: none; }
 
 .archetype-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  flex-shrink: 0;
+width: 12px;
+height: 12px;
+border-radius: 50%;
+flex-shrink: 0;
 }
 
 .archetype-name {
-  font-size: 14px;
-  font-weight: 500;
-  flex: 1;
-  color: var(--text);
+font-size: 14px;
+font-weight: 500;
+flex: 1;
+color: var(–text);
 }
 
 .archetype-coords {
-  font-size: 11px;
-  color: var(--nhs-mid-grey);
-  font-family: monospace;
+font-size: 11px;
+color: var(–nhs-mid-grey);
+font-family: monospace;
 }
 
+/* Footer */
 footer {
-  text-align: center;
-  padding: 32px 16px;
-  font-size: 12px;
-  color: var(--nhs-mid-grey);
-  line-height: 1.7;
+text-align: center;
+padding: 32px 16px;
+font-size: 12px;
+color: var(–nhs-mid-grey);
+line-height: 1.7;
 }
 
-footer a { color: var(--nhs-blue); text-decoration: none; }
+footer a { color: var(–nhs-blue); text-decoration: none; }
 
+/* Animations */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
+from { opacity: 0; transform: translateY(16px); }
+to   { opacity: 1; transform: translateY(0); }
 }
 
 .animate-in { animation: fadeUp 0.35s ease forwards; }
 
 @keyframes dotReveal {
-  from { opacity: 0; transform: scale(0); }
-  to   { opacity: 1; transform: scale(1); }
+from { opacity: 0; transform: scale(0); }
+to   { opacity: 1; transform: scale(1); }
 }
 
 .user-dot { animation: dotReveal 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.5s both; }
 
+/* ── Legend ────────────────────────────────────────── */
 .legend-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin: 12px 0 16px;
-  padding: 14px;
-  background: var(--nhs-pale-grey);
-  border-radius: 4px;
-  border: 1px solid var(--border);
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 8px;
+margin: 12px 0 16px;
+padding: 14px;
+background: var(–nhs-pale-grey);
+border-radius: 4px;
+border: 1px solid var(–border);
 }
 
 .legend-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+display: flex;
+align-items: center;
+gap: 8px;
 }
 
 .legend-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  flex-shrink: 0;
+width: 10px;
+height: 10px;
+border-radius: 50%;
+flex-shrink: 0;
 }
 
 .legend-label {
-  font-size: 12px;
-  color: var(--nhs-dark-grey);
-  line-height: 1.3;
+font-size: 12px;
+color: var(–nhs-dark-grey);
+line-height: 1.3;
 }
-
-/* ── Email box ─────────────────────────────────────────── */
-.email-box {
-  background: var(--nhs-pale-grey);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 14px 16px;
-  margin-bottom: 12px;
-}
-.email-box input:focus { outline: none; border-color: var(--nhs-blue); }
-
+/* ── Responsive ────────────────────────────────────── */
 @media (max-width: 420px) {
-  .card, .results-card, .archetype-card { padding: 20px 16px; }
-  .q-text { font-size: 18px; }
-  .option-grid { grid-template-columns: 1fr; }
-  .nhs-logo { font-size: 18px; }
-  .header-text h1 { font-size: 15px; }
+.card, .results-card, .archetype-card { padding: 20px 16px; }
+.q-text { font-size: 18px; }
+.option-grid { grid-template-columns: 1fr; }
+.nhs-logo { font-size: 18px; }
+.header-text h1 { font-size: 15px; }
 }
 </style>
+
 </head>
 <body>
+
+<!-- Header -->
 
 <header class="header">
   <div class="header-inner">
     <div class="nhs-logo">NHS</div>
     <div class="header-text">
       <h1>Compass</h1>
-      <p>Map your position in the NHS digital landscape.<br>Understand your journey to the NHS's future</p>
+      <p>Map your position in the NHS landscape · Plot your journey to the NHS's future</p>
     </div>
   </div>
   <div class="progress-track">
@@ -542,7 +558,11 @@ footer a { color: var(--nhs-blue); text-decoration: none; }
   </div>
 </header>
 
+<!-- Main -->
+
 <main class="container" id="app"></main>
+
+<!-- Footer -->
 
 <footer>
   <p><strong>NHS Compass Project</strong> &copy; 2025 DCDC Ltd</p>
@@ -552,18 +572,33 @@ footer a { color: var(--nhs-blue); text-decoration: none; }
 </footer>
 
 <script>
-// ── Config ────────────────────────────────────────────────────────────────────
-// Replace PLACEHOLDER with your Heroku app name once deployed
-const API_URL = 'https://nhs-compass-api-8f6a271038ec.herokuapp.com';
-
 // ── Data ──────────────────────────────────────────────────────────────────────
+
 const DEMOGRAPHICS = [
-  { id:'role',      label:'What is your primary role?',    options:['Clinician','Manager','Both','Other'] },
-  { id:'seniority', label:'What is your seniority?',       options:['Band 1–4','Band 5–6','Band 7–8','Director','Executive'] },
-  { id:'setting',   label:'What is your primary setting?', options:['Acute Trust','Mental Health Trust','Community Trust','GP Practice','ICB','NHSE','Independent','Other'] },
-  { id:'region',    label:'Where do you work?',            options:['National','London','South East','South West','East of England','Midlands','North East & Yorkshire','North West','Other'] }
+  {
+    id: 'role',
+    label: 'What is your primary role?',
+    options: ['Clinician','Manager','Both','Other']
+  },
+  {
+    id: 'seniority',
+    label: 'What is your seniority?',
+    options: ['Band 1–4','Band 5–6','Band 7–8','Director','Executive']
+  },
+  {
+    id: 'setting',
+    label: 'What is your primary setting?',
+    options: ['Acute Trust','Mental Health Trust','Community Trust','GP Practice','ICB','NHSE','Independent','Other']
+  },
+  {
+    id: 'region',
+    label: 'Where do you work?',
+    options: ['National','London','South East','South West','East of England','Midlands','North East & Yorkshire','North West','Other']
+  }
 ];
 
+// axis S/I = axis1, T/H = axis2
+// reverse: SA pulls away from named pole (I and H questions)
 const QUESTIONS = [
   { id:1,  axis:'S', rev:false, text:'A national clinical protocol followed consistently across the NHS will produce better outcomes than locally designed approaches.' },
   { id:2,  axis:'H', rev:true,  text:'No technology can replicate the clinical judgment that comes from being in the room with a patient.' },
@@ -592,6 +627,8 @@ const LIKERT = [
   { label:'Strongly Disagree', val:-2 }
 ];
 
+// x = Axis1: -10 (Innovation) to +10 (Standardisation)
+// y = Axis2: -10 (Human) to +10 (Technology)
 const ARCHETYPES = [
   { id:'grandee',     label:'The Grandee',     x: 10, y: -7, color:'#7B2D8B' },
   { id:'mandarin',    label:'The Mandarin',    x: 10, y:  8, color:'#003087' },
@@ -602,20 +639,19 @@ const ARCHETYPES = [
   { id:'evangelist',  label:'The Evangelist',  x: -4, y:  6, color:'#FFB81C' }
 ];
 
+// ── State ─────────────────────────────────────────────────────────────────────
 let state = {
-  screen: 'landing',
+  screen: 'landing',   // landing | demo | questions | results
   demographics: {},
   answers: {},
   qIndex: 0,
-  scores: null,
-  resultId: null,
-  saving: false,
-  saveError: false,
-  sharedResult: null
+  scores: null
 };
 
+// ── Scoring ───────────────────────────────────────────────────────────────────
 function score(answers) {
-  let s1 = 0, s2 = 0, c1 = 0, c2 = 0;
+  let s1 = 0, s2 = 0;
+  let c1 = 0, c2 = 0;
   QUESTIONS.forEach(q => {
     const raw = answers[q.id];
     if (raw === undefined) return;
@@ -645,9 +681,16 @@ function closestArchetype(x, y) {
   return best;
 }
 
+// ── Compass SVG ───────────────────────────────────────────────────────────────
 function buildCompass(userPos) {
-  const SIZE = 400, PAD = 52, INNER = SIZE - PAD * 2, mid = SIZE / 2;
-  function toSVG(val) { return PAD + ((val + 10) / 20) * INNER; }
+  const SIZE = 400;
+  const PAD  = 52;
+  const INNER = SIZE - PAD * 2;
+  const mid = SIZE / 2;
+
+  function toSVG(val) {
+    return PAD + ((val + 10) / 20) * INNER;
+  }
 
   let gridLines = '';
   [-8,-6,-4,-2,0,2,4,6,8].forEach(v => {
@@ -663,9 +706,10 @@ function buildCompass(userPos) {
 
   let archetypeNodes = '';
   ARCHETYPES.forEach(a => {
-    const ax = toSVG(a.x), ay = toSVG(a.y);
+    const ax = toSVG(a.x);
+    const ay = toSVG(a.y);
     archetypeNodes += `
-      <g>
+      <g class="archetype-node">
         <circle cx="${ax}" cy="${ay}" r="18" fill="${a.color}" opacity="0.12"/>
         <circle cx="${ax}" cy="${ay}" r="7" fill="${a.color}" opacity="0.95"/>
         <circle cx="${ax}" cy="${ay}" r="3.5" fill="white"/>
@@ -675,7 +719,8 @@ function buildCompass(userPos) {
 
   let userDot = '';
   if (userPos) {
-    const ux = toSVG(userPos.x), uy = toSVG(userPos.y);
+    const ux = toSVG(userPos.x);
+    const uy = toSVG(userPos.y);
     userDot = `
       <g class="user-dot">
         <circle cx="${ux}" cy="${uy}" r="22" fill="#FFB81C" opacity="0.2"/>
@@ -688,45 +733,65 @@ function buildCompass(userPos) {
   }
 
   return `
-    <svg viewBox="0 0 ${SIZE} ${SIZE}" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+    <svg viewBox="0 0 ${SIZE} ${SIZE}" xmlns="http://www.w3.org/2000/svg"
+      style="width:100%;height:auto;display:block;">
       <defs>
         <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stop-color="#EBF4FF"/>
           <stop offset="100%" stop-color="#F0F4F5"/>
         </linearGradient>
       </defs>
+
+      <!-- Background -->
       <rect width="${SIZE}" height="${SIZE}" fill="url(#bgGrad)" rx="4"/>
+
+      <!-- Quadrant tints -->
       <rect x="${PAD}" y="${PAD}" width="${INNER/2}" height="${INNER/2}" fill="#00963908"/>
       <rect x="${mid}" y="${PAD}" width="${INNER/2}" height="${INNER/2}" fill="#005EB808"/>
       <rect x="${PAD}" y="${mid}" width="${INNER/2}" height="${INNER/2}" fill="#7B2D8B08"/>
       <rect x="${mid}" y="${mid}" width="${INNER/2}" height="${INNER/2}" fill="#0072CE08"/>
+
+      <!-- Grid -->
       ${gridLines}
+
+      <!-- Axis border -->
       <rect x="${PAD}" y="${PAD}" width="${INNER}" height="${INNER}"
         fill="none" stroke="#005EB830" stroke-width="1" rx="2"/>
+
+      <!-- Axis labels -->
       <text x="${mid}" y="${PAD - 10}" fill="#005EB8" font-size="9.5"
         text-anchor="middle" font-family="Noto Sans,sans-serif" font-weight="700"
         letter-spacing="0.08em">LOCAL INNOVATION</text>
+
       <text x="${mid}" y="${SIZE - PAD + 20}" fill="#005EB8" font-size="9.5"
         text-anchor="middle" font-family="Noto Sans,sans-serif" font-weight="700"
         letter-spacing="0.08em">STANDARDISATION</text>
+
       <text x="${PAD - 10}" y="${mid}" fill="#005EB8" font-size="9.5"
         text-anchor="middle" font-family="Noto Sans,sans-serif" font-weight="700"
         letter-spacing="0.08em"
         transform="rotate(-90 ${PAD - 10} ${mid})">HUMAN JUDGMENT</text>
+
       <text x="${SIZE - PAD + 10}" y="${mid}" fill="#005EB8" font-size="9.5"
         text-anchor="middle" font-family="Noto Sans,sans-serif" font-weight="700"
         letter-spacing="0.08em"
         transform="rotate(90 ${SIZE - PAD + 10} ${mid})">TECHNOLOGY</text>
+
+      <!-- Archetypes -->
       ${archetypeNodes}
+
+      <!-- User -->
       ${userDot}
     </svg>
   `;
 }
 
+// ── Render ────────────────────────────────────────────────────────────────────
 function render() {
   const app = document.getElementById('app');
   const bar = document.getElementById('progressBar');
 
+  // Progress
   if (state.screen === 'questions') {
     bar.style.width = ((state.qIndex / QUESTIONS.length) * 100) + '%';
   } else if (state.screen === 'results') {
@@ -758,6 +823,7 @@ function render() {
 
   else if (state.screen === 'demo') {
     const allDone = DEMOGRAPHICS.every(d => state.demographics[d.id]);
+
     let demoHTML = DEMOGRAPHICS.map(d => {
       const opts = d.options.map(o => {
         const sel = state.demographics[d.id] === o ? 'selected' : '';
@@ -785,6 +851,7 @@ function render() {
   else if (state.screen === 'questions') {
     const q = QUESTIONS[state.qIndex];
     const answered = state.answers[q.id];
+
     const likertHTML = LIKERT.map(l => {
       const sel = state.answers[q.id] === l.val ? 'selected' : '';
       return `
@@ -794,6 +861,7 @@ function render() {
         </button>
       `;
     }).join('');
+
     const isLast = state.qIndex === QUESTIONS.length - 1;
 
     app.innerHTML = `
@@ -805,16 +873,7 @@ function render() {
         <button class="btn btn-primary"
             ${answered !== undefined ? '' : 'disabled'}
             onclick="nextQ()">${isLast ? 'See My Results' : 'Next →'}</button>
-        <button class="btn btn-ghost" onclick="goBack()">← Back</button>
-      </div>
-    `;
-  }
-
-  else if (state.screen === 'loading') {
-    app.innerHTML = `
-      <div class="card animate-in" style="text-align:center;padding:48px 24px;">
-        <div style="font-size:36px;margin-bottom:16px;">🧭</div>
-        <p style="color:var(--nhs-mid-grey);">Loading results…</p>
+          <button class="btn btn-ghost" onclick="goBack()">← Back</button>
       </div>
     `;
   }
@@ -823,9 +882,13 @@ function render() {
     const sc = state.scores;
     const ql = quadrantLabel(sc.x, sc.y);
     const closest = closestArchetype(sc.x, sc.y);
-    const ax1label = sc.x >= 0 ? `Standardisation +${sc.x}` : `Local Innovation ${Math.abs(sc.x)}`;
-    const ax2label = sc.y >= 0 ? `Technology Supersedes +${sc.y}` : `Human Judgment ${Math.abs(sc.y)}`;
-    const isShared = !!state.sharedResult;
+
+    const ax1label = sc.x >= 0
+      ? `Standardisation +${sc.x}`
+      : `Local Innovation ${Math.abs(sc.x)}`;
+    const ax2label = sc.y >= 0
+      ? `Technology Supersedes +${sc.y}`
+      : `Human Judgment ${Math.abs(sc.y)}`;
 
     const archetypeRows = ARCHETYPES.map(a => `
       <div class="archetype-row">
@@ -834,39 +897,6 @@ function render() {
         <div class="archetype-coords">(${a.x > 0 ? '+' : ''}${a.x}, ${a.y > 0 ? '+' : ''}${a.y})</div>
       </div>
     `).join('');
-
-    let shareSection = '';
-    if (isShared) {
-      shareSection = `
-        <div class="share-box" style="background:var(--nhs-pale-grey);border:1px solid var(--border);border-radius:4px;padding:14px 16px;margin-bottom:16px;">
-          <div style="font-size:12px;font-weight:700;color:var(--nhs-mid-grey);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Viewing shared result</div>
-          <p style="font-size:13px;color:var(--nhs-dark-grey);">This is someone else's NHS Compass result. <button class="btn btn-ghost" style="display:inline;padding:4px 12px;font-size:13px;margin:4px 0 0;" onclick="restart()">Take the quiz yourself →</button></p>
-        </div>
-      `;
-    } else if (state.saving) {
-      shareSection = `
-        <div class="share-box" style="background:var(--nhs-pale-grey);border:1px solid var(--border);border-radius:4px;padding:14px 16px;margin-bottom:16px;text-align:center;">
-          <p style="font-size:13px;color:var(--nhs-mid-grey);">Saving your results…</p>
-        </div>
-      `;
-    } else if (state.resultId) {
-      const link = window.location.href;
-      shareSection = `
-        <div class="share-box" style="background:var(--nhs-pale-grey);border:1px solid var(--border);border-radius:4px;padding:14px 16px;margin-bottom:16px;">
-          <div style="font-size:12px;font-weight:700;color:var(--nhs-mid-grey);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">Share your results</div>
-          <div style="display:flex;gap:8px;align-items:center;">
-            <input readonly value="${link}" style="flex:1;font-size:12px;padding:8px 10px;border:1px solid var(--border);border-radius:4px;background:white;color:var(--nhs-dark-grey);font-family:monospace;" onclick="this.select()"/>
-            <button id="copyBtn" class="btn btn-ghost" style="margin:0;padding:8px 14px;font-size:13px;white-space:nowrap;" onclick="copyLink()">Copy link</button>
-          </div>
-        </div>
-      `;
-    } else if (state.saveError) {
-      shareSection = `
-        <div class="share-box" style="background:#fff5f5;border:1px solid #fcc;border-radius:4px;padding:14px 16px;margin-bottom:16px;">
-          <p style="font-size:13px;color:var(--nhs-red);">Could not save results — shareable link unavailable. Your scores are still shown below.</p>
-        </div>
-      `;
-    }
 
     app.innerHTML = `
       <div class="results-card animate-in">
@@ -894,19 +924,7 @@ function render() {
             <div class="score-pill-val">${ax2label}</div>
           </div>
         </div>
-        ${shareSection}
-        ${!isShared ? `
-        <div class="email-box" id="emailBox">
-          <div style="font-size:12px;font-weight:700;color:var(--nhs-mid-grey);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">Email my results</div>
-          <div style="display:flex;gap:8px;">
-            <input type="email" id="emailInput" placeholder="your@email.com"
-              style="flex:1;font-size:14px;padding:10px 12px;border:2px solid var(--border);border-radius:4px;font-family:inherit;"
-              onkeydown="if(event.key==='Enter') sendEmail()"/>
-            <button id="emailBtn" class="btn btn-primary" style="margin:0;padding:10px 16px;font-size:14px;white-space:nowrap;" onclick="sendEmail()">Send</button>
-          </div>
-          <p id="emailMsg" style="font-size:13px;margin-top:8px;display:none;"></p>
-        </div>
-        <button class="btn btn-ghost" onclick="restart()">Take it again</button>` : ''}
+        <button class="btn btn-ghost" onclick="restart()">Take it again</button>
       </div>
 
       <div class="archetype-card animate-in">
@@ -918,8 +936,11 @@ function render() {
   }
 }
 
+// ── Actions ───────────────────────────────────────────────────────────────────
 function go(screen) {
-  if (screen === 'questions') state.qIndex = 0;
+  if (screen === 'questions') {
+    state.qIndex = 0;
+  }
   state.screen = screen;
   render();
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -931,7 +952,8 @@ function selectDemo(id, val) {
 }
 
 function answer(val) {
-  state.answers[QUESTIONS[state.qIndex].id] = val;
+  const q = QUESTIONS[state.qIndex];
+  state.answers[q.id] = val;
   render();
 }
 
@@ -941,153 +963,32 @@ function nextQ() {
     render();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   } else {
-    state.scores  = score(state.answers);
-    state.screen  = 'results';
-    state.saving  = true;
-    state.saveError = false;
+    state.scores = score(state.answers);
+    state.screen = 'results';
     render();
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    saveResult();
   }
 }
 
 function goBack() {
-  if (state.qIndex === 0) state.screen = 'demo';
-  else state.qIndex--;
+  if (state.qIndex === 0) {
+    state.screen = 'demo';
+  } else {
+    state.qIndex--;
+  }
   render();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function restart() {
-  history.replaceState(null, '', window.location.pathname);
-  state = { screen: 'landing', demographics: {}, answers: {}, qIndex: 0, scores: null,
-            resultId: null, saving: false, saveError: false, sharedResult: null };
+  state = { screen: 'landing', demographics: {}, answers: {}, qIndex: 0, scores: null };
   render();
   window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// ── API ───────────────────────────────────────────────────────────────────────
-
-async function saveResult() {
-  try {
-    const res = await fetch(`${API_URL}/api/results`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        demographics: state.demographics,
-        answers: state.answers,
-        scores: state.scores
-      })
-    });
-    if (!res.ok) throw new Error('Save failed');
-    const data = await res.json();
-    state.resultId = data.id;
-    history.replaceState(null, '', `?r=${data.id}`);
-  } catch (e) {
-    state.saveError = true;
-  } finally {
-    state.saving = false;
-    render();
-  }
-}
-
-async function fetchArchetypes() {
-  try {
-    const res = await fetch(`${API_URL}/api/archetypes`);
-    if (!res.ok) throw new Error();
-    const data = await res.json();
-    // Replace the ARCHETYPES array in-place with DB values
-    ARCHETYPES.length = 0;
-    data.forEach(a => ARCHETYPES.push({
-      id: a.id, label: a.label,
-      x: parseFloat(a.x), y: parseFloat(a.y),
-      color: a.color
-    }));
-  } catch (e) {
-    // silently fall back to hardcoded defaults
-  }
-}
-
-async function loadSharedResult(id) {
-  state.screen = 'loading';
-  render();
-  try {
-    const res = await fetch(`${API_URL}/api/results/${id}`);
-    if (!res.ok) throw new Error('Not found');
-    const data = await res.json();
-    state.sharedResult = data;
-    state.scores  = data.scores;
-    state.resultId = data.id;
-    state.screen  = 'results';
-  } catch (e) {
-    state.screen = 'landing';
-  }
-  render();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-async function sendEmail() {
-  const input = document.getElementById('emailInput');
-  const btn   = document.getElementById('emailBtn');
-  const msg   = document.getElementById('emailMsg');
-  const email = input ? input.value.trim() : '';
-  if (!email || !email.includes('@')) {
-    msg.style.display = 'block';
-    msg.style.color   = 'var(--nhs-red)';
-    msg.textContent   = 'Please enter a valid email address.';
-    return;
-  }
-  if (!state.resultId) {
-    msg.style.display = 'block';
-    msg.style.color   = 'var(--nhs-red)';
-    msg.textContent   = 'Result not saved yet — please wait a moment and try again.';
-    return;
-  }
-  btn.disabled    = true;
-  btn.textContent = 'Sending…';
-  msg.style.display = 'none';
-  try {
-    const res = await fetch(`${API_URL}/api/results/${state.resultId}/email`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email })
-    });
-    if (!res.ok) throw new Error();
-    msg.style.display = 'block';
-    msg.style.color   = 'var(--nhs-green)';
-    msg.textContent   = `✓ Results sent to ${email}`;
-    input.disabled    = true;
-    btn.textContent   = 'Sent';
-  } catch (e) {
-    msg.style.display = 'block';
-    msg.style.color   = 'var(--nhs-red)';
-    msg.textContent   = 'Could not send email — please try copying the link instead.';
-    btn.disabled      = false;
-    btn.textContent   = 'Send';
-  }
-}
-
-function copyLink() {
-  navigator.clipboard.writeText(window.location.href).then(() => {
-    const btn = document.getElementById('copyBtn');
-    if (btn) { btn.textContent = '✓ Copied!'; setTimeout(() => { btn.textContent = 'Copy link'; }, 2000); }
-  });
 }
 
 // ── Init ──────────────────────────────────────────────────────────────────────
-
-async function init() {
-  await fetchArchetypes();
-  const params = new URLSearchParams(window.location.search);
-  const rid = params.get('r');
-  if (rid) {
-    await loadSharedResult(rid);
-  } else {
-    render();
-  }
-}
-
-init();
+render();
 </script>
+
 </body>
 </html>
