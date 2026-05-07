@@ -542,6 +542,11 @@ footer a { color: var(--nhs-blue); text-decoration: none; }
 </footer>
 
 <script>
+// ── Config ────────────────────────────────────────────────────────────────────
+// Replace PLACEHOLDER with your Heroku app name once deployed
+const API_URL = 'https://nhs-compass-api-PLACEHOLDER.herokuapp.com';
+
+// ── Data ──────────────────────────────────────────────────────────────────────
 const DEMOGRAPHICS = [
   { id:'role',      label:'What is your primary role?',    options:['Clinician','Manager','Both','Other'] },
   { id:'seniority', label:'What is your seniority?',       options:['Band 1–4','Band 5–6','Band 7–8','Director','Executive'] },
@@ -592,7 +597,11 @@ let state = {
   demographics: {},
   answers: {},
   qIndex: 0,
-  scores: null
+  scores: null,
+  resultId: null,
+  saving: false,
+  saveError: false,
+  sharedResult: null
 };
 
 function score(answers) {
@@ -791,12 +800,22 @@ function render() {
     `;
   }
 
+  else if (state.screen === 'loading') {
+    app.innerHTML = `
+      <div class="card animate-in" style="text-align:center;padding:48px 24px;">
+        <div style="font-size:36px;margin-bottom:16px;">🧭</div>
+        <p style="color:var(--nhs-mid-grey);">Loading results…</p>
+      </div>
+    `;
+  }
+
   else if (state.screen === 'results') {
     const sc = state.scores;
     const ql = quadrantLabel(sc.x, sc.y);
     const closest = closestArchetype(sc.x, sc.y);
     const ax1label = sc.x >= 0 ? `Standardisation +${sc.x}` : `Local Innovation ${Math.abs(sc.x)}`;
     const ax2label = sc.y >= 0 ? `Technology Supersedes +${sc.y}` : `Human Judgment ${Math.abs(sc.y)}`;
+    const isShared = !!state.sharedResult;
 
     const archetypeRows = ARCHETYPES.map(a => `
       <div class="archetype-row">
@@ -805,6 +824,39 @@ function render() {
         <div class="archetype-coords">(${a.x > 0 ? '+' : ''}${a.x}, ${a.y > 0 ? '+' : ''}${a.y})</div>
       </div>
     `).join('');
+
+    let shareSection = '';
+    if (isShared) {
+      shareSection = `
+        <div class="share-box" style="background:var(--nhs-pale-grey);border:1px solid var(--border);border-radius:4px;padding:14px 16px;margin-bottom:16px;">
+          <div style="font-size:12px;font-weight:700;color:var(--nhs-mid-grey);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Viewing shared result</div>
+          <p style="font-size:13px;color:var(--nhs-dark-grey);">This is someone else's NHS Compass result. <button class="btn btn-ghost" style="display:inline;padding:4px 12px;font-size:13px;margin:4px 0 0;" onclick="restart()">Take the quiz yourself →</button></p>
+        </div>
+      `;
+    } else if (state.saving) {
+      shareSection = `
+        <div class="share-box" style="background:var(--nhs-pale-grey);border:1px solid var(--border);border-radius:4px;padding:14px 16px;margin-bottom:16px;text-align:center;">
+          <p style="font-size:13px;color:var(--nhs-mid-grey);">Saving your results…</p>
+        </div>
+      `;
+    } else if (state.resultId) {
+      const link = window.location.href;
+      shareSection = `
+        <div class="share-box" style="background:var(--nhs-pale-grey);border:1px solid var(--border);border-radius:4px;padding:14px 16px;margin-bottom:16px;">
+          <div style="font-size:12px;font-weight:700;color:var(--nhs-mid-grey);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">Share your results</div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <input readonly value="${link}" style="flex:1;font-size:12px;padding:8px 10px;border:1px solid var(--border);border-radius:4px;background:white;color:var(--nhs-dark-grey);font-family:monospace;" onclick="this.select()"/>
+            <button id="copyBtn" class="btn btn-ghost" style="margin:0;padding:8px 14px;font-size:13px;white-space:nowrap;" onclick="copyLink()">Copy link</button>
+          </div>
+        </div>
+      `;
+    } else if (state.saveError) {
+      shareSection = `
+        <div class="share-box" style="background:#fff5f5;border:1px solid #fcc;border-radius:4px;padding:14px 16px;margin-bottom:16px;">
+          <p style="font-size:13px;color:var(--nhs-red);">Could not save results — shareable link unavailable. Your scores are still shown below.</p>
+        </div>
+      `;
+    }
 
     app.innerHTML = `
       <div class="results-card animate-in">
@@ -832,7 +884,8 @@ function render() {
             <div class="score-pill-val">${ax2label}</div>
           </div>
         </div>
-        <button class="btn btn-ghost" onclick="restart()">Take it again</button>
+        ${shareSection}
+        ${!isShared ? `<button class="btn btn-ghost" onclick="restart()">Take it again</button>` : ''}
       </div>
 
       <div class="archetype-card animate-in">
@@ -867,10 +920,13 @@ function nextQ() {
     render();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   } else {
-    state.scores = score(state.answers);
-    state.screen = 'results';
+    state.scores  = score(state.answers);
+    state.screen  = 'results';
+    state.saving  = true;
+    state.saveError = false;
     render();
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    saveResult();
   }
 }
 
@@ -882,12 +938,94 @@ function goBack() {
 }
 
 function restart() {
-  state = { screen: 'landing', demographics: {}, answers: {}, qIndex: 0, scores: null };
+  history.replaceState(null, '', window.location.pathname);
+  state = { screen: 'landing', demographics: {}, answers: {}, qIndex: 0, scores: null,
+            resultId: null, saving: false, saveError: false, sharedResult: null };
   render();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-render();
+// ── API ───────────────────────────────────────────────────────────────────────
+
+async function saveResult() {
+  try {
+    const res = await fetch(`${API_URL}/api/results`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        demographics: state.demographics,
+        answers: state.answers,
+        scores: state.scores
+      })
+    });
+    if (!res.ok) throw new Error('Save failed');
+    const data = await res.json();
+    state.resultId = data.id;
+    history.replaceState(null, '', `?r=${data.id}`);
+  } catch (e) {
+    state.saveError = true;
+  } finally {
+    state.saving = false;
+    render();
+  }
+}
+
+async function fetchArchetypes() {
+  try {
+    const res = await fetch(`${API_URL}/api/archetypes`);
+    if (!res.ok) throw new Error();
+    const data = await res.json();
+    // Replace the ARCHETYPES array in-place with DB values
+    ARCHETYPES.length = 0;
+    data.forEach(a => ARCHETYPES.push({
+      id: a.id, label: a.label,
+      x: parseFloat(a.x), y: parseFloat(a.y),
+      color: a.color
+    }));
+  } catch (e) {
+    // silently fall back to hardcoded defaults
+  }
+}
+
+async function loadSharedResult(id) {
+  state.screen = 'loading';
+  render();
+  try {
+    const res = await fetch(`${API_URL}/api/results/${id}`);
+    if (!res.ok) throw new Error('Not found');
+    const data = await res.json();
+    state.sharedResult = data;
+    state.scores  = data.scores;
+    state.resultId = data.id;
+    state.screen  = 'results';
+  } catch (e) {
+    state.screen = 'landing';
+  }
+  render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.getElementById('copyBtn');
+    if (btn) { btn.textContent = '✓ Copied!'; setTimeout(() => { btn.textContent = 'Copy link'; }, 2000); }
+  });
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+
+async function init() {
+  await fetchArchetypes();
+  const params = new URLSearchParams(window.location.search);
+  const rid = params.get('r');
+  if (rid) {
+    await loadSharedResult(rid);
+  } else {
+    render();
+  }
+}
+
+init();
 </script>
 </body>
 </html>

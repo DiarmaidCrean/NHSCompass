@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NHS Compass — Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --nhs-blue: #005EB8;
+  --nhs-dark-blue: #003087;
+  --nhs-green: #009639;
+  --nhs-yellow: #FFB81C;
+  --nhs-red: #DA291C;
+  --nhs-pale-grey: #F0F4F5;
+  --nhs-mid-grey: #768692;
+  --nhs-dark-grey: #425563;
+  --border: #d8dde0;
+  --text: #212B32;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Noto Sans', sans-serif; background: var(--nhs-pale-grey); color: var(--text); min-height: 100vh; }
+.header { background: var(--nhs-dark-blue); padding: 16px 24px; display: flex; align-items: center; gap: 16px; }
+.header h1 { color: white; font-size: 18px; }
+.header .badge { background: var(--nhs-yellow); color: #333; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 3px; }
+.container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+.login-box { max-width: 400px; margin: 80px auto; background: white; border-top: 4px solid var(--nhs-blue); border-radius: 0 0 4px 4px; padding: 32px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.login-box h2 { font-size: 20px; margin-bottom: 20px; }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+.form-group input { width: 100%; padding: 10px 12px; border: 2px solid var(--border); border-radius: 4px; font-size: 15px; font-family: inherit; }
+.form-group input:focus { outline: none; border-color: var(--nhs-blue); }
+.btn { padding: 12px 20px; border-radius: 4px; font-size: 15px; font-weight: 700; font-family: inherit; cursor: pointer; border: none; }
+.btn-primary { background: var(--nhs-blue); color: white; width: 100%; }
+.btn-primary:hover { background: var(--nhs-dark-blue); }
+.btn-save { background: var(--nhs-green); color: white; padding: 6px 14px; font-size: 13px; }
+.btn-save:hover { background: #007d2f; }
+.error { color: var(--nhs-red); font-size: 13px; margin-top: 8px; }
+.card { background: white; border-top: 4px solid var(--nhs-blue); border-radius: 0 0 4px 4px; padding: 24px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+.card h2 { font-size: 18px; margin-bottom: 4px; }
+.card .sub { font-size: 13px; color: var(--nhs-mid-grey); margin-bottom: 20px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; padding: 8px 12px; background: var(--nhs-pale-grey); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--nhs-mid-grey); border-bottom: 2px solid var(--border); }
+td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #f9fbfc; }
+.tag { display: inline-block; background: var(--nhs-pale-grey); border: 1px solid var(--border); border-radius: 3px; padding: 2px 8px; font-size: 11px; margin: 2px 2px 2px 0; }
+.archetype-row input[type=number] { width: 64px; padding: 6px 8px; border: 1px solid var(--border); border-radius: 4px; font-size: 14px; font-family: inherit; }
+.archetype-row input[type=text] { width: 160px; padding: 6px 8px; border: 1px solid var(--border); border-radius: 4px; font-size: 14px; font-family: inherit; }
+.dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+.saved-badge { color: var(--nhs-green); font-size: 12px; font-weight: 700; margin-left: 8px; display: none; }
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 24px; }
+.stat { background: white; border-left: 4px solid var(--nhs-blue); padding: 16px 20px; border-radius: 0 4px 4px 0; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.stat-val { font-size: 28px; font-weight: 700; color: var(--nhs-blue); }
+.stat-label { font-size: 12px; color: var(--nhs-mid-grey); margin-top: 2px; }
+.copy-link { font-size: 11px; color: var(--nhs-blue); cursor: pointer; text-decoration: underline; margin-left: 6px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div style="background:white;color:var(--nhs-blue);font-weight:700;font-size:20px;padding:3px 9px;border-radius:2px;">NHS</div>
+  <h1>Compass Admin</h1>
+  <span class="badge">PRIVATE</span>
+</div>
+
+<div id="root"></div>
+
+<script>
+const API_URL = 'https://nhs-compass-api-PLACEHOLDER.herokuapp.com';
+let adminToken = sessionStorage.getItem('adminToken') || '';
+let allResults = [];
+let archetypes = [];
+
+// ── Auth ──────────────────────────────────────────────────────────────────────
+function renderLogin(error) {
+  document.getElementById('root').innerHTML = `
+    <div class="login-box">
+      <h2>Admin Login</h2>
+      <div class="form-group">
+        <label>Admin Token</label>
+        <input type="password" id="tokenInput" placeholder="Enter admin token" />
+      </div>
+      ${error ? `<div class="error">${error}</div>` : ''}
+      <button class="btn btn-primary" style="margin-top:16px;" onclick="login()">Sign In</button>
+    </div>
+  `;
+  document.getElementById('tokenInput').addEventListener('keydown', e => { if (e.key === 'Enter') login(); });
+}
+
+async function login() {
+  const token = document.getElementById('tokenInput').value.trim();
+  if (!token) return;
+  try {
+    const res = await fetch(`${API_URL}/api/admin/results`, {
+      headers: { 'x-admin-token': token }
+    });
+    if (res.status === 401) { renderLogin('Invalid token'); return; }
+    adminToken = token;
+    sessionStorage.setItem('adminToken', token);
+    const data = await res.json();
+    allResults = data;
+    await loadArchetypes();
+    renderDashboard();
+  } catch (e) {
+    renderLogin('Could not connect to API');
+  }
+}
+
+// ── Data loading ──────────────────────────────────────────────────────────────
+async function loadArchetypes() {
+  const res = await fetch(`${API_URL}/api/archetypes`);
+  archetypes = await res.json();
+  archetypes = archetypes.map(a => ({ ...a, x: parseFloat(a.x), y: parseFloat(a.y) }));
+}
+
+async function refreshResults() {
+  const res = await fetch(`${API_URL}/api/admin/results`, {
+    headers: { 'x-admin-token': adminToken }
+  });
+  allResults = await res.json();
+}
+
+// ── Dashboard ─────────────────────────────────────────────────────────────────
+function renderDashboard() {
+  const total = allResults.length;
+  const roles = {};
+  const settings = {};
+  allResults.forEach(r => {
+    const d = r.demographics || {};
+    if (d.role) roles[d.role] = (roles[d.role] || 0) + 1;
+    if (d.setting) settings[d.setting] = (settings[d.setting] || 0) + 1;
+  });
+  const topRole = Object.entries(roles).sort((a,b) => b[1]-a[1])[0];
+  const topSetting = Object.entries(settings).sort((a,b) => b[1]-a[1])[0];
+
+  document.getElementById('root').innerHTML = `
+    <div class="container">
+      <div class="stat-grid">
+        <div class="stat"><div class="stat-val">${total}</div><div class="stat-label">Total responses</div></div>
+        <div class="stat"><div class="stat-val">${topRole ? topRole[0] : '—'}</div><div class="stat-label">Most common role (${topRole ? topRole[1] : 0})</div></div>
+        <div class="stat"><div class="stat-val">${topSetting ? topSetting[0].split(' ')[0] : '—'}</div><div class="stat-label">Most common setting</div></div>
+      </div>
+
+      <div class="card">
+        <h2>Archetype Positions</h2>
+        <p class="sub">Adjust x (−10 to +10, negative = Local Innovation, positive = Standardisation) and y (negative = Human Judgment, positive = Technology). Click Save after editing each row.</p>
+        <table>
+          <thead><tr><th>Archetype</th><th>Label</th><th>x</th><th>y</th><th></th><th></th></tr></thead>
+          <tbody id="archetypeTable">
+            ${archetypes.map(a => `
+              <tr class="archetype-row" data-id="${a.id}">
+                <td><span class="dot" style="background:${a.color}"></span>${a.id}</td>
+                <td><input type="text" value="${a.label}" data-field="label"/></td>
+                <td><input type="number" value="${a.x}" min="-10" max="10" step="1" data-field="x"/></td>
+                <td><input type="number" value="${a.y}" min="-10" max="10" step="1" data-field="y"/></td>
+                <td><button class="btn btn-save" onclick="saveArchetype('${a.id}', this)">Save</button></td>
+                <td><span class="saved-badge" id="saved-${a.id}">✓ Saved</span></td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h2>All Results</h2>
+        <p class="sub">${total} responses — most recent first. Click a link to preview.</p>
+        <table>
+          <thead><tr><th>Date</th><th>Role</th><th>Seniority</th><th>Setting</th><th>Region</th><th>Axis 1</th><th>Axis 2</th><th>Link</th></tr></thead>
+          <tbody>
+            ${allResults.map(r => {
+              const d = r.demographics || {};
+              const s = r.scores || {};
+              const ax1 = s.x >= 0 ? `+${s.x} Std` : `${s.x} Innov`;
+              const ax2 = s.y >= 0 ? `+${s.y} Tech` : `${s.y} Human`;
+              const date = new Date(r.created_at).toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+              const link = `${window.location.origin}/NHSCompass/?r=${r.id}`;
+              return `<tr>
+                <td>${date}</td>
+                <td>${d.role || '—'}</td>
+                <td>${d.seniority || '—'}</td>
+                <td>${d.setting || '—'}</td>
+                <td>${d.region || '—'}</td>
+                <td>${ax1}</td>
+                <td>${ax2}</td>
+                <td><a href="${link}" target="_blank" style="color:var(--nhs-blue);font-size:12px;">View</a>
+                    <span class="copy-link" onclick="navigator.clipboard.writeText('${link}')">copy</span></td>
+              </tr>`;
+            }).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  `;
+}
+
+async function saveArchetype(id, btn) {
+  const row = btn.closest('tr');
+  const label = row.querySelector('[data-field="label"]').value;
+  const x = parseFloat(row.querySelector('[data-field="x"]').value);
+  const y = parseFloat(row.querySelector('[data-field="y"]').value);
+  btn.disabled = true;
+  btn.textContent = 'Saving…';
+  try {
+    const res = await fetch(`${API_URL}/api/admin/archetypes/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', 'x-admin-token': adminToken },
+      body: JSON.stringify({ label, x, y })
+    });
+    if (!res.ok) throw new Error();
+    const badge = document.getElementById(`saved-${id}`);
+    badge.style.display = 'inline';
+    setTimeout(() => { badge.style.display = 'none'; }, 2500);
+  } catch (e) {
+    alert('Save failed. Check the API is running.');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Save';
+  }
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+if (adminToken) {
+  fetch(`${API_URL}/api/admin/results`, { headers: { 'x-admin-token': adminToken } })
+    .then(res => {
+      if (res.status === 401) { adminToken = ''; sessionStorage.removeItem('adminToken'); renderLogin(); return; }
+      return res.json();
+    })
+    .then(async data => {
+      if (!data) return;
+      allResults = data;
+      await loadArchetypes();
+      renderDashboard();
+    })
+    .catch(() => renderLogin('Could not connect to API'));
+} else {
+  renderLogin();
+}
+</script>
+</body>
+</html>
